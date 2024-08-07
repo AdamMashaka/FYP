@@ -1,0 +1,11 @@
+opencv
+ultralytics
+torch
+torchvision
+pyttsx3
+pytesseract
+pydub
+pyaudio
+pywhatkit
+pyautogui
+pandas

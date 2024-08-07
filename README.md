@@ -29,6 +29,21 @@ kind of flow chart we will use is
 - pyttsx 
 - yolov9 
 
+
+```sh
+   pip install opencv-python opencv-python-headless
+
+```
+
+```sh
+wget https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/deploy.prototxt
+wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/mobilenet_iter_73000.caffemodel
+   
+```   
+
+
+
+
 ## How It Works
 
 1. User open the application
