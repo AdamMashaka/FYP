@@ -60,6 +60,19 @@ wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/mobilenet_iter_73000
 **Repository:** [GitHub Repository](https://github.com/AdamMashaka/bliind_DIT)
 **Demo:** [Live Demo](https://)
 
+# You wanna fork it? 
+  just fork it and push you are changes in my origin directory  
+
+  ```sh
+     git fetch origin
+     git merge origin/main
+     # Resolve any merge conflicts if necessary
+     git add <resolved-file>  # Only if there were conflicts
+     git commit -m "Resolve merge conflicts"  # Only if there were conflicts
+     git push origin main
+
+```
+
 ## Do not forget to give it a star
 
 ##  GIVE CREDIT TO ADAM KATANI
