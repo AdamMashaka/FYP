@@ -153,6 +153,32 @@ sleep 20  # Wait for 20 seconds to ensure all services are up
 /usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_r>
 
 exit 0
+
+``` mport subprocess
+import sys
+
+# List of packages to install
+packages = ['opencv-python', 'numpy', 'pyttsx3']
+
+# Install each package if not already installed
+for package in packages:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Now run your main script
+subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py">
+
+
+
+
+
+
+
+
+                              [ Read 12 lines ]
+^G Help        ^O Write Out   ^W Where Is    ^K Cut         ^T Execute
+^X Exit        ^R Read File   ^\ Replace     ^U Paste       ^J Justify
+
+```
                                                                                >
 
 ```
