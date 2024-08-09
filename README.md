@@ -200,3 +200,36 @@ subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py">
 
 
 ```
+
+
+bgs
+
+```
+project-houston@AI:~/Downloads/object_detection $ /usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_run.py
+Defaulting to user installation because normal site-packages is not writeable
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Requirement already satisfied: opencv-python in /home/project-houston/.local/lib/python3.9/site-packages (4.10.0.84)
+Requirement already satisfied: numpy>=1.19.3 in /home/project-houston/.local/lib/python3.9/site-packages (from opencv-python) (1.26.4)
+
+[notice] A new release of pip is available: 24.1.2 -> 24.2
+[notice] To update, run: python3 -m pip install --upgrade pip
+Defaulting to user installation because normal site-packages is not writeable
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Requirement already satisfied: numpy in /home/project-houston/.local/lib/python3.9/site-packages (1.26.4)
+
+[notice] A new release of pip is available: 24.1.2 -> 24.2
+[notice] To update, run: python3 -m pip install --upgrade pip
+Defaulting to user installation because normal site-packages is not writeable
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Requirement already satisfied: pyttsx3 in /home/project-houston/.local/lib/python3.9/site-packages (2.90)
+
+[notice] A new release of pip is available: 24.1.2 -> 24.2
+[notice] To update, run: python3 -m pip install --upgrade pip
+Traceback (most recent call last):
+  File "/home/project-houston/Downloads/object_detection/tensor.py", line 51, in <module>
+    cv2.imshow('Object Detection', frame)
+cv2.error: OpenCV(4.10.0) /io/opencv/modules/highgui/src/window.cpp:1301: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
+
+project-houston@AI:~/Downloads/object_detection $ 
+
+```
