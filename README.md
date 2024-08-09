@@ -233,3 +233,21 @@ cv2.error: OpenCV(4.10.0) /io/opencv/modules/highgui/src/window.cpp:1301: error:
 project-houston@AI:~/Downloads/object_detection $ 
 
 ```
+
+add this 
+```
+[Unit]
+Description=Object Detection Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_run.py
+WorkingDirectory=/home/project-houston/Downloads/object_detection
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=project-houston
+
+[Install]
+WantedBy=multi-user.target
+```
