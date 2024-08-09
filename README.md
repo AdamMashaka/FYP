@@ -252,3 +252,31 @@ User=project-houston
 WantedBy=multi-user.target
 
 ```
+status 
+```
+project-houston@AI:~ $ sudo systemctl status object_detection.service
+● object_detection.service - Object Detection Service
+     Loaded: loaded (/etc/systemd/system/object_detection.service; enabled; ven>
+     Active: active (running) since Fri 2024-08-09 21:35:16 EAT; 3s ago
+   Main PID: 1760 (python3)
+      Tasks: 2 (limit: 3873)
+        CPU: 3.146s
+     CGroup: /system.slice/object_detection.service
+             ├─1760 /usr/bin/python3 /home/project-houston/Downloads/object_det>
+             └─1768 /usr/bin/python3 -m pip install numpy
+
+Aug 09 21:35:16 AI systemd[1]: Started Object Detection Service.
+Aug 09 21:35:18 AI python3[1761]: Defaulting to user installation because norma>
+Aug 09 21:35:19 AI python3[1761]: Looking in indexes: https://pypi.org/simple, >
+Aug 09 21:35:19 AI python3[1761]: Requirement already satisfied: opencv-python >
+Aug 09 21:35:19 AI python3[1761]: Requirement already satisfied: numpy>=1.19.3 >
+Aug 09 21:35:19 AI python3[1761]: [notice] A new release of pip is available: 2>
+Aug 09 21:35:19 AI python3[1761]: [notice] To update, run: pip install --upgrad>
+Aug 09 21:35:20 AI python3[1768]: Defaulting to user installation because norma>
+Aug 09 21:35:21 AI python3[1768]: Looking in indexes: https://pypi.org/simple, >
+Aug 09 21:35:21 AI python3[1768]: Requirement already satisfied: numpy in /home>
+lines 1-20/20 (END)
+
+
+
+```
