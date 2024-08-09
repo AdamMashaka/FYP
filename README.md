@@ -133,3 +133,27 @@ python3 /home/pi/Downloads/object_detection/tensor.py &
 
 ##  GIVE CREDIT TO ADAM KATANI
 
+
+```
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+sleep 20  # Wait for 20 seconds to ensure all services are up
+/usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_r>
+
+exit 0
+                                                                               >
+
+```
+
