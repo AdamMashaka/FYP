@@ -77,7 +77,7 @@ wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/mobilenet_iter_73000
 ## How you are pi should lopojk like
 
 ```
-`!/bin/sh -e
+#!/bin/sh -e
 #
 # rc.local
 #
@@ -94,12 +94,12 @@ wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/mobilenet_iter_73000
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
-fi&
+fi
 
-python3 /home/project-houston/Downloads/object_detection/tensor.py &
-                               [ Read 22 lines ]
-^G Help      ^O Write Out ^W Where Is  ^K Cut       ^T Execute   ^C Location
-^X Exit      ^R Read File ^\ Replace   ^U Paste     ^J Justify   ^_ Go To Line
+python3 /home/pi/Downloads/object_detection/tensor.py &
+
+exit 0
+
 
 ```
 
