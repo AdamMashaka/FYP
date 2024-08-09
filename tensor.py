@@ -4,7 +4,8 @@ import pyttsx3
 import threading
 
 # Load the MobileNet SSD model
-net = cv2.dnn.readNetFromCaffe('deploy.prototxt', 'mobilenet_iter_73000.caffemodel')
+net = cv2.dnn.readNetFromCaffe('/home/project-houston/Downloads/object_detection/deploy.prototxt', '/home/project-houston/Downloads/object_detection/mobilenet_iter_73000.caffemodel')
+
 
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
