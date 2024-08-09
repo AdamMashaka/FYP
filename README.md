@@ -102,6 +102,21 @@ python3 /home/pi/Downloads/object_detection/tensor.py &
 
 
 ```
+## install_and_run.py 
+```
+import subprocess
+import sys
+
+# List of packages to install
+packages = ['opencv-python', 'numpy', 'pyttsx3']
+
+# Install each package if not already installed
+for package in packages:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Now run your main script
+subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py"])
+```
 
 
 ## Do not forget t add this in you are Rasberry pi local to run by automatic  
