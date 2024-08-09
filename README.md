@@ -280,3 +280,16 @@ lines 1-20/20 (END)
 
 
 ```
+
+
+bugs 
+
+```
+
+project-houston@AI:~ $ /usr/bin/python3 /home/project-houston/Downloads/object_detection/tensor.py
+Traceback (most recent call last):
+  File "/home/project-houston/Downloads/object_detection/tensor.py", line 7, in <module>
+    net = cv2.dnn.readNetFromCaffe('deploy.prototxt', 'mobilenet_iter_73000.caffemodel')
+cv2.error: OpenCV(4.10.0) /io/opencv/modules/dnn/src/caffe/caffe_io.cpp:1126: error: (-2:Unspecified error) FAILED: fs.is_open(). Can't open "deploy.prototxt" in function 'ReadProtoFromTextFile'
+
+```
