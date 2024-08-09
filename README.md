@@ -75,7 +75,7 @@ wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/mobilenet_iter_73000
 
 
 ## How you are pi should lopojk like
-
+~~
 !/bin/sh -e
 #
 # rc.local
@@ -100,7 +100,7 @@ python3 /home/pi/Downloads/object_detection/tensor.py &
 ^G Help      ^O Write Out ^W Where Is  ^K Cut       ^T Execute   ^C Location
 ^X Exit      ^R Read File ^\ Replace   ^U Paste     ^J Justify   ^_ Go To Line
 
-
+~~~
 
 ```
 
