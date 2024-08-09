@@ -103,6 +103,17 @@ python3 /home/pi/Downloads/object_detection/tensor.py &
 
 ```
 
+
+## Do not forget t add this in you are Rasberry pi local to run by automatic  
+
+```
+  sleep 20
+source /home/pi/.bashrc
+source /home/pi/your_env/bin/activate
+python3 /home/pi/Downloads/object_detection/tensor.py &
+
+```
+
 ## Do not forget to give it a star
 
 ##  GIVE CREDIT TO ADAM KATANI
