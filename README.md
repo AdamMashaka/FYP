@@ -162,3 +162,49 @@ source /home/project-houston/.bashrc
 ^X Exit      ^R Read File ^\ Replace   ^U Paste     ^J Justify   ^_ Go To Line
 
 ```
+
+
+follow this  
+
+```
+sudo nano /etc/rc.local
+```
+and this 
+
+```
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+sleep 20  # Wait for 20 seconds to ensure all services are up
+/usr/bin/python3 /home/Downloads/object_detection/install_and_run.py &
+
+exit 0
+```
+
+lAst this
+
+```
+/usr/bin/python3 /home/Downloads/object_detection/install_and_run.py > /home/pi/startup_log.txt 2>&1 &
+```
+
+reboot  
+
+```
+sudo reboot
+```
