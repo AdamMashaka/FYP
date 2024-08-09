@@ -251,3 +251,21 @@ User=project-houston
 [Install]
 WantedBy=multi-user.target
 ```
+
+
+
+```
+project-houston@AI:~/Downloads/object_detection $ sudo nano /etc/systemd/system/object_detection.services
+project-houston@AI:~/Downloads/object_detection $ sudo systemctl enable object_detection.services
+Failed to enable unit: Unit file object_detection.services.service does not exist.
+project-houston@AI:~/Downloads/object_detection $ sudo system start object_detectiom.service
+sudo: system: command not found
+project-houston@AI:~/Downloads/object_detection $ sudo systemctl start object_detectiom.service
+Failed to start object_detectiom.service: Unit object_detectiom.service not found.
+project-houston@AI:~/Downloads/object_detection $ sudo systemctl enable object_detection.service
+Failed to enable unit: Unit file object_detection.service does not exist.
+project-houston@AI:~/Downloads/object_detection $ sudo systemctl start object_detection.service
+Failed to start object_detection.service: Unit object_detection.service not found.
+project-houston@AI:~/Downloads/object_detection $ 
+
+```
