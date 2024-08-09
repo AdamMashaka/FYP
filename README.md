@@ -179,7 +179,5 @@ subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py">
 ^X Exit        ^R Read File   ^\ Replace     ^U Paste       ^J Justify
 
 ```
-                                                                               >
 
-```
 
