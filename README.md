@@ -133,154 +133,75 @@ python3 /home/pi/Downloads/object_detection/tensor.py &
 
 ##  GIVE CREDIT TO ADAM KATANI
 
+## this is modified tensor.py after to detect object will tell which direction it is 
 
 ```
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
+import cv2
+import numpy as np
+import pyttsx3
+import threading
 
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
+# Load the MobileNet SSD model
+net = cv2.dnn.readNetFromCaffe('/home/project-houston/Downloads/object_detection/deploy.prototxt', '/home/project-houston/Downloads/object_detection/mobilenet_iter_73000.caffemodel')
 
-sleep 20  # Wait for 20 seconds to ensure all services are up
-/usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_r>
+# Initialize the text-to-speech engine
+engine = pyttsx3.init()
 
-exit 0
+# Class labels MobileNet SSD was trained on
+classNames = {0: 'background', 1: 'aeroplane', 2: 'bicycle', 3: 'bird', 4: 'boat',
+              5: 'bottle', 6: 'bus', 7: 'car', 8: 'cat', 9: 'chair', 10: 'cow',
+              11: 'diningtable', 12: 'dog', 13: 'horse', 14: 'motorbike', 15: 'person',
+              16: 'pottedplant', 17: 'sheep', 18: 'sofa', 19: 'train', 20: 'tvmonitor'}
 
-``` mport subprocess
-import sys
+# Capture video from the camera (0 is the default camera)
+cap = cv2.VideoCapture(0)
 
-# List of packages to install
-packages = ['opencv-python', 'numpy', 'pyttsx3']
+def announce(label, position):
+    engine.say(f'{label} is detected on the {position}')
+    engine.runAndWait()
 
-# Install each package if not already installed
-for package in packages:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
 
-# Now run your main script
-subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py">
+    # Get the center of the frame
+    frame_center = frame.shape[1] // 2
 
+    # Prepare the frame for object detection
+    blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 0.007843, (300, 300), 127.5)
+    net.setInput(blob)
+    detections = net.forward()
 
+    # Loop over the detections
+    for i in range(detections.shape[2]):
+        confidence = detections[0, 0, i, 2]
+        if confidence > 0.5:
+            idx = int(detections[0, 0, i, 1])
+            box = detections[0, 0, i, 3:7] * np.array([frame.shape[1], frame.shape[0], frame.shape[1], frame.shape[0]])
+            (startX, startY, endX, endY) = box.astype("int")
 
+            label = classNames[idx]
+            cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 255, 0), 2)
+            cv2.putText(frame, label, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
+            # Determine if the object is on the left or right side of the frame
+            if startX < frame_center:
+                position = "left"
+            else:
+                position = "right"
 
+            # Announce the detected object and its position in a separate thread
+            threading.Thread(target=announce, args=(label, position)).start()
 
-
-
-                              [ Read 12 lines ]
-^G Help        ^O Write Out   ^W Where Is    ^K Cut         ^T Execute
-^X Exit        ^R Read File   ^\ Replace     ^U Paste       ^J Justify
-
-```
-
-
-
-```
-import subprocess
-import sys
-
-# List of packages to install
-packages = ['opencv-python', 'numpy', 'pyttsx3']
-
-# Install each package if not already installed
-for package in packages:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-# Now run your main script
-subprocess.run([sys.executable, "/home/Downloads/object_detection/tensor.py">
-
-
-
-
-```
-
-
-bgs
-
-```
-project-houston@AI:~/Downloads/object_detection $ /usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_run.py
-Defaulting to user installation because normal site-packages is not writeable
-Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Requirement already satisfied: opencv-python in /home/project-houston/.local/lib/python3.9/site-packages (4.10.0.84)
-Requirement already satisfied: numpy>=1.19.3 in /home/project-houston/.local/lib/python3.9/site-packages (from opencv-python) (1.26.4)
-
-[notice] A new release of pip is available: 24.1.2 -> 24.2
-[notice] To update, run: python3 -m pip install --upgrade pip
-Defaulting to user installation because normal site-packages is not writeable
-Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Requirement already satisfied: numpy in /home/project-houston/.local/lib/python3.9/site-packages (1.26.4)
-
-[notice] A new release of pip is available: 24.1.2 -> 24.2
-[notice] To update, run: python3 -m pip install --upgrade pip
-Defaulting to user installation because normal site-packages is not writeable
-Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Requirement already satisfied: pyttsx3 in /home/project-houston/.local/lib/python3.9/site-packages (2.90)
-
-[notice] A new release of pip is available: 24.1.2 -> 24.2
-[notice] To update, run: python3 -m pip install --upgrade pip
-Traceback (most recent call last):
-  File "/home/project-houston/Downloads/object_detection/tensor.py", line 51, in <module>
+    # Display the frame with detections
     cv2.imshow('Object Detection', frame)
-cv2.error: OpenCV(4.10.0) /io/opencv/modules/highgui/src/window.cpp:1301: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
 
-project-houston@AI:~/Downloads/object_detection $ 
+    # Break the loop if the 'q' key is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
+# Release the camera and close all OpenCV windows
+cap.release()
+cv2.destroyAllWindows()
 ```
-
-add this 
-```
-[Unit]
-Description=Object Detection Service
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/python3 /home/project-houston/Downloads/object_detection/install_and_run.py
-WorkingDirectory=/home/project-houston/Downloads/object_detection
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=project-houston
-
-[Install]
-WantedBy=multi-user.target
-
-```
-status 
-```
-project-houston@AI:~ $ sudo systemctl status object_detection.service
-● object_detection.service - Object Detection Service
-     Loaded: loaded (/etc/systemd/system/object_detection.service; enabled; ven>
-     Active: active (running) since Fri 2024-08-09 21:35:16 EAT; 3s ago
-   Main PID: 1760 (python3)
-      Tasks: 2 (limit: 3873)
-        CPU: 3.146s
-     CGroup: /system.slice/object_detection.service
-             ├─1760 /usr/bin/python3 /home/project-houston/Downloads/object_det>
-             └─1768 /usr/bin/python3 -m pip install numpy
-
-Aug 09 21:35:16 AI systemd[1]: Started Object Detection Service.
-Aug 09 21:35:18 AI python3[1761]: Defaulting to user installation because norma>
-Aug 09 21:35:19 AI python3[1761]: Looking in indexes: https://pypi.org/simple, >
-Aug 09 21:35:19 AI python3[1761]: Requirement already satisfied: opencv-python >
-Aug 09 21:35:19 AI python3[1761]: Requirement already satisfied: numpy>=1.19.3 >
-Aug 09 21:35:19 AI python3[1761]: [notice] A new release of pip is available: 2>
-Aug 09 21:35:19 AI python3[1761]: [notice] To update, run: pip install --upgrad>
-Aug 09 21:35:20 AI python3[1768]: Defaulting to user installation because norma>
-Aug 09 21:35:21 AI python3[1768]: Looking in indexes: https://pypi.org/simple, >
-Aug 09 21:35:21 AI python3[1768]: Requirement already satisfied: numpy in /home>
-lines 1-20/20 (END)
-
-
-
-```
-
-
-bugs 
-
